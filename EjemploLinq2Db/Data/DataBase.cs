@@ -17,7 +17,8 @@ namespace EjemploLinq2Db.Data
             CheckTable();
         }
 
-        public ITable<Persona> Personas => GetTable<Persona>();
+        public ITable<Alumno> Alumnos => GetTable<Alumno>();
+        public ITable<Curso> Cursos => GetTable<Curso>();
 
         /// <summary>
         /// Esta funcion comprueba si la tabla "Persona" existe, de no existir la crea en base al modelo "Persona".
@@ -27,10 +28,8 @@ namespace EjemploLinq2Db.Data
             var sp = this.DataProvider.GetSchemaProvider();
             var dbSchema = sp.GetSchema(this);
 
-            if (!dbSchema.Tables.Any(t => t.TableName == "Personas")) //Si la tabla no existe
-            {
-                this.CreateTable<Persona>();
-            }
+            if (!dbSchema.Tables.Any(t => t.TableName == "Alumnos")) this.CreateTable<Alumno>();
+            if (!dbSchema.Tables.Any(t => t.TableName == "Cursos")) this.CreateTable<Curso>();
         }
     }
 
